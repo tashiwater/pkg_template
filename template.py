@@ -13,11 +13,17 @@ class Template:
         rospy.Subscriber(input_topic, PoseStamped, self.callback)
         rospy.Timer(rospy.Duration(self.dt), self.timer_callback)
 
+    #############################################################
+    # callback
+    #############################################################
+
     def callback(self, msg):
         self._pub.publish(msg)
 
     def timer_callback(self, event):
         pass
+
+    
 
 if __name__ == "__main__":
     rospy.init_node("template", anonymous=True)
