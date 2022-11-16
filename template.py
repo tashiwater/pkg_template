@@ -5,10 +5,10 @@ from geometry_msgs.msg import PoseStamped
 
 class Template:
     def __init__(self):
-        clock = rospy.get_param("~clock")
+        self._clock = rospy.get_param("~clock")
         input_topic = rospy.get_param("~input_topic")
         output_topic = rospy.get_param("~output_topic")
-        self.dt = 1.0/ clock
+        self.dt = 1.0/ self._clock
         self._pub = rospy.Publisher(output_topic, PoseStamped, queue_size=1)
         rospy.Subscriber(input_topic, PoseStamped, self.callback)
         rospy.Timer(rospy.Duration(self.dt), self.timer_callback)
@@ -22,7 +22,20 @@ class Template:
 
     def timer_callback(self, event):
         pass
+    
+    #############################################################
+    # functions
+    #############################################################
 
+
+    #############################################################
+    # spin
+    #############################################################
+
+    def spin(self):
+        rate = rospy.Rate(self._clock)
+        while not rospy.is_shutdown():
+            rate.sleep()
     
 
 if __name__ == "__main__":
