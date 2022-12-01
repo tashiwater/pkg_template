@@ -5,9 +5,17 @@ from geometry_msgs.msg import PoseStamped
 
 class Template:
     def __init__(self):
+    	################## param input
+    	###### private pram
         self._clock = rospy.get_param("~clock")
         input_topic = rospy.get_param("~input_topic")
         output_topic = rospy.get_param("~output_topic")
+        ###### group yaml
+        
+        ##### central yaml
+        
+        ##################
+        
         self.dt = 1.0/ self._clock
         self._pub = rospy.Publisher(output_topic, PoseStamped, queue_size=1)
         rospy.Subscriber(input_topic, PoseStamped, self.callback)
@@ -18,10 +26,13 @@ class Template:
     #############################################################
 
     def callback(self, msg):
-        self._pub.publish(msg)
+        pass
 
     def timer_callback(self, event):
         pass
+    #############################################################
+    # main function
+    #############################################################
     
     #############################################################
     # functions
