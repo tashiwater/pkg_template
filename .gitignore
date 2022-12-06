@@ -133,3 +133,5 @@ dmypy.json
 *.bag
 .catkin_tools/
 *.pyc
+*/input/*.mp4
+*/output/*.gif
